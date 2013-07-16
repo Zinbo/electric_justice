@@ -1,0 +1,24 @@
+
+development:
+  adapter: postgresql
+  encoding: unicode
+  database: electric_justice_development
+  pool: 5
+  username: <%= ENV['EJPOSTGRES_USERNAME'] %>
+  password: <%= ENV['EJPOSTGRES_USERNAME'] %>
+
+test:
+  adapter: postgresql
+  encoding: unicode
+  database: electric_justice_test
+  pool: 5
+  username: <%= ENV['EJPOSTGRES_USERNAME'] %>
+  password: <%= ENV['EJPOSTGRES_USERNAME'] %>
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: electric_justice_production
+  pool: 5
+  username: <%= ENV['EJPOSTGRES_USERNAME'] %>
+  password: <%= ENV['EJPOSTGRES_USERNAME'] %>
