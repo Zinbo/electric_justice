@@ -1,0 +1,32 @@
+<% provide(:title, "Edit alts") %>
+<h1>Edit alts</h1>
+
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for @character, :url => url_for( :action => 'updatealts') do |f| %>
+      <%= render 'shared/character_error_messages' %>
+
+      <%= f.label :character_name %>
+      <%= f.text_field :character_name %>
+      <br>
+      
+      <%= f.submit "Add alt", class: "btn btn-large btn-primary" %>
+    <% end %>
+    <ul class="users">
+    	<% @characters.each do |character| %>
+    	<li>
+		    <%= character.character_name.titleize %>
+		    <% if !character.primary %>
+				<%= link_to "Make primary character", make_primary_path(:character => character.id), method: :post %>
+	            |
+			    <%= link_to "Delete character", delete_alt_path(:character => character.id), method: :delete,
+	                              data: { confirm: "You sure?" } %>
+			<%end%>                                  
+		<% end %>
+	   	</li>
+	</ul>
+	
+</table>
+    
+  </div>
+</div>

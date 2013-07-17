@@ -1,0 +1,34 @@
+<% provide(:title, 'Overview') %>
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class="span2 sidebar">
+			<h3>sidebar</h3>
+			<li><%= link_to "Gallery", gallery_path %></li>
+			<li><%= link_to "Voice Server Details", voiceserverdetails_path %></li>
+			<li><%= link_to "Roster", roster_path %></li>
+			<li><%= link_to "Raid Progression", progression_path %></li>
+			<li><%= link_to "Request Bank Items", requestbankitems_path %></li>
+			<li><%= link_to "Polls", polls_path %></li>
+		</div>
+		<div class="span8">
+			<h1>News</h1>
+			<h2>Whats been going on?</h2>
+			
+		<% @news.each do |entry| %>
+		<div>
+			<%= entry.entry%>
+			<p>
+			Created at <%= entry.created_at%>
+			<p>
+			Editted at <%= entry.updated_at%>
+		</div>
+		<%end%>
+		</div>
+		<div id="right-sidebar" class="span2 pull-right">
+		<h3>sidebar</h3>
+		<p>IRC Chat</p>
+		<p>Whose on vent?</p>
+		<p>Screenshot of the day</p>
+		</div>
+	</div>
+</div>

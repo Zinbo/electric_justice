@@ -1,4 +1,22 @@
 ElectricJustice::Application.routes.draw do
+  devise_for :users, :controllers => {:registrations => "registrations"}
+  resources :users, only: [:show, :index, :destroy]
+  
+  root to: 'static_pages#home'
+  
+  match '/gallery',                           to: 'static_pages#gallery',                                     via: 'get'
+  match '/progression',                       to: 'static_pages#progression',                                 via: 'get'
+  match '/roster',                            to: 'static_pages#roster',                                      via: 'get'
+  match '/polls',                             to: 'static_pages#polls',                                       via: 'get'
+  match '/requestbankitems',                  to: 'static_pages#request_bank_items',                          via: 'get'
+  match '/voiceserverdetails',                to: 'static_pages#voice_server_details',                        via: 'get'
+  
+  match '/users/:id/characters',              to: 'characters#show' ,                   as: :alts,             via: 'get'
+  match '/users/:id/characters',              to: 'characters#update' ,                                       via: 'post'
+  match '/users/:id/characters/primary',      to: 'characters#primary',                 as: :make_primary,    via: 'post'
+  match '/users/:id/characters',              to: 'characters#delete',                  as: :delete_alt,      via: 'delete'
+  
+  match '/overview',                           to: 'blog_entries#overview',                                     via: 'get'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

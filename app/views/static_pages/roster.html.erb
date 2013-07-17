@@ -1,0 +1,52 @@
+<% provide(:title, 'Roster') %>
+<div class="center hero-unit">
+  <h1>Roster</h1>
+
+  <h2>
+    Who are we?
+  </h2>
+  
+  	<table>
+  		<thead>
+  			<tr>
+  				<th></th>
+  				<th>Name</th>
+  				<th>Rank</th>
+  				<th>Level</th>
+  				<th>Race</th>
+  				<th>Class</th>
+  				<th>Spec</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+		<% @guildMembers.each do |member| %>
+			<tr>
+				<td>
+					<%= image_tag("http://eu.battle.net/static-render/eu/" + member['character']['thumbnail'] + '?alt=/wow/static/images/2d/avatar/' + 
+	      			member['character']['race'].to_s + '-' + member['character']['gender'].to_s + '.jpg', alt: 'avatar') %>	
+				</td>
+				<td>
+					<%= link_to member['character']['name'], 'http://eu.battle.net/wow/en/character/silvermoon/' + member['character']['name'] + '/simple' %>
+				</td>
+				<td>
+					<%= member['rank'] %>
+				</td>			
+				<td>
+					<%= member['character']['level'] %>
+				</td>
+				<td>
+					<%= image_tag("http://media.blizzard.com/wow/icons/36/race_" + @races[member['character']['race']] + "_" + @gender[member['character']['gender']] + ".jpg")%>
+				</td>
+				<td>
+					<%= image_tag("http://media.blizzard.com/wow/icons/36/class_" + @classes[member['character']['class']] + ".jpg")%>
+				</td>
+				<td>
+					<% if !member['character']['spec'].blank? %>
+						<%= image_tag("http://eu.media.blizzard.com/wow/icons/36/" + member['character']['spec']['icon'] + ".jpg") %>
+					<%end%>
+				</td>
+			</tr>
+	  	<% end %>
+  		</tbody>
+  	</table>
+</div>
