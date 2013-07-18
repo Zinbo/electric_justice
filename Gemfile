@@ -41,5 +41,8 @@ group :test do
   gem 'capybara-screenshot'
 end
 
+gem 'forem-theme-twist', :git => "git://github.com/radar/forem-theme-twist.git"
+
 gem 'devise'
 
+gem 'forem', :git => "git://github.com/radar/forem.git"

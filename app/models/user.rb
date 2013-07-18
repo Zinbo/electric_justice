@@ -17,4 +17,12 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :admin
   # attr_accessible :title, :body
   
+  def to_s
+    Character.find_by_user_id_and_primary(self.id, true).name
+  end
+  
+  #def email
+  #  email
+  #end
+  
 end
