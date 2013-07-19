@@ -11,7 +11,12 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130717233256) do
+ActiveRecord::Schema.define(:version => 20130719141058) do
+
+  create_table "answers", :force => true do |t|
+    t.integer "question_id"
+    t.text    "answer"
+  end
 
   create_table "blog_entries", :force => true do |t|
     t.text     "entry"
@@ -22,9 +27,9 @@ ActiveRecord::Schema.define(:version => 20130717233256) do
   create_table "characters", :force => true do |t|
     t.integer  "user_id"
     t.string   "name"
-    t.boolean  "primary"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "primary",    :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   add_index "characters", ["name"], :name => "index_characters_on_name", :unique => true
@@ -124,6 +129,25 @@ ActiveRecord::Schema.define(:version => 20130717233256) do
   add_index "forem_views", ["user_id"], :name => "index_forem_views_on_user_id"
   add_index "forem_views", ["viewable_id"], :name => "index_forem_views_on_topic_id"
 
+  create_table "polls", :force => true do |t|
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "polls", ["created_at"], :name => "index_polls_on_created_at"
+
+  create_table "questions", :force => true do |t|
+    t.integer "poll_id"
+    t.string  "question"
+  end
+
+  add_index "questions", ["poll_id"], :name => "index_questions_on_poll_id"
+
+  create_table "responses", :force => true do |t|
+    t.integer "user_id"
+    t.integer "answer_id"
+  end
+
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "",               :null => false
     t.string   "encrypted_password",     :default => "",               :null => false
@@ -140,7 +164,6 @@ ActiveRecord::Schema.define(:version => 20130717233256) do
     t.string   "authentication_token"
     t.datetime "created_at",                                           :null => false
     t.datetime "updated_at",                                           :null => false
-    t.boolean  "admin",                  :default => false
     t.boolean  "forem_admin",            :default => false
     t.string   "forem_state",            :default => "pending_review"
     t.boolean  "forem_auto_subscribe",   :default => false

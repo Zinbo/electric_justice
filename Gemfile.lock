@@ -1,10 +1,4 @@
 GIT
-  remote: git://github.com/radar/forem-theme-twist.git
-  revision: f08ab243ee695bd5485d589c1177d99d00602150
-  specs:
-    forem-theme-twist (0.0.1)
-
-GIT
   remote: git://github.com/radar/forem.git
   revision: e6c7e04f2dbf806aa75a5a6e9810ee6e168d3011
   specs:
@@ -270,7 +264,6 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   faker (= 1.1.2)
   forem!
-  forem-theme-twist!
   guard-rspec (= 2.5.0)
   guard-spork (= 1.5.0)
   httparty (~> 0.11.0)
