@@ -21,6 +21,8 @@ group :doc do
   gem 'sdoc', '0.3.20', require: false
 end
 
+gem 'lazy_high_charts'
+
 gem 'strong_parameters'
 
 gem 'pg', '0.15.1'

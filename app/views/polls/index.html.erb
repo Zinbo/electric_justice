@@ -1,0 +1,24 @@
+<% provide(:title, 'Polls') %>
+<div class="center hero-unit">
+  <h1>Polls</h1>
+
+  <h2>
+    What do you think?
+  </h2>
+  
+  <div class="row">
+  	<%= form_for(@poll, :url => url_for( :action => 'create'), :method => :post) do |f| %>
+  		<h3><%=@poll.question%></h3>
+  	
+  		<%count = @poll.answers.count%>
+		<%@poll.answers.each_with_index do |a, i|%>
+			<%= radio_button_tag(:answer, a.id, (i == 0)) %> <%=a.answer%>
+			<p>
+  	  	<%end%>
+      	<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+	<% end %>
+  </div>
+  <div class="pull-right">
+  	<%= link_to "Older Entries", main_app.older_polls_path %></li>
+  </div>
+</div>

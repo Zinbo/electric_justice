@@ -45,7 +45,4 @@ class StaticPagesController < ApplicationController
   def request_bank_items
   end
   
-  def polls
-  end
-  
 end
