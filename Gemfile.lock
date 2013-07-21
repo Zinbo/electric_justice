@@ -12,13 +12,6 @@ GIT
       simple_form
       workflow (= 0.8.0)
 
-GIT
-  remote: git://github.com/railstutorial/spork-rails.git
-  revision: 5db525af2f917047057f546bc1ac2574d1c6b11e
-  specs:
-    spork-rails (3.2.1)
-      spork (>= 1.0rc0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -63,8 +56,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-screenshot (0.3.11)
-      capybara (>= 1.0, < 3)
     childprocess (0.3.6)
       ffi (~> 1.0, >= 1.0.6)
     coderay (1.0.9)
@@ -91,8 +82,6 @@ GEM
     factory_girl_rails (4.2.1)
       factory_girl (~> 4.2.0)
       railties (>= 3.0.0)
-    faker (1.1.2)
-      i18n (~> 0.5)
     ffi (1.9.0)
     formatador (0.2.4)
     friendly_id (4.0.9)
@@ -107,10 +96,6 @@ GEM
     guard-rspec (2.5.0)
       guard (>= 1.1)
       rspec (~> 2.11)
-    guard-spork (1.5.0)
-      childprocess (>= 0.2.3)
-      guard (>= 1.1)
-      spork (>= 0.8.4)
     hash-deep-merge (0.1.1)
     hike (1.2.3)
     httparty (0.11.0)
@@ -224,7 +209,6 @@ GEM
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     slop (3.4.5)
-    spork (1.0.0rc3)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -257,19 +241,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bcrypt-ruby (= 3.0.1)
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
   capybara (= 2.1.0)
-  capybara-screenshot
   childprocess (= 0.3.6)
   coffee-rails
   devise
   factory_girl_rails (= 4.2.1)
-  faker (= 1.1.2)
   forem!
   guard-rspec (= 2.5.0)
-  guard-spork (= 1.5.0)
   httparty (~> 0.11.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)
@@ -281,7 +261,6 @@ DEPENDENCIES
   sass-rails
   sdoc (= 0.3.20)
   selenium-webdriver (= 2.0.0)
-  spork-rails!
   strong_parameters
   turbolinks (= 1.1.1)
   uglifier (= 2.1.1)
