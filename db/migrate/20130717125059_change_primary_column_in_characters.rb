@@ -1,4 +1,4 @@
-class AddAdminColumnToUsers < ActiveRecord::Migration
+class ChangePrimaryColumnInCharacters < ActiveRecord::Migration
   def up
     change_column :characters, :primary, :boolean, :default => false
 end
