@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130720152900) do
+ActiveRecord::Schema.define(:version => 20130725132605) do
 
   create_table "answers", :force => true do |t|
     t.text    "answer"
@@ -137,16 +137,32 @@ ActiveRecord::Schema.define(:version => 20130720152900) do
 
   add_index "polls", ["created_at"], :name => "index_polls_on_created_at"
 
-  create_table "questions", :force => true do |t|
-    t.integer "poll_id"
-    t.string  "question"
+  create_table "received_messages", :force => true do |t|
+    t.integer  "received_sender_id"
+    t.integer  "received_recipient_id"
+    t.string   "subject"
+    t.text     "body"
+    t.boolean  "deleted",               :default => false
+    t.boolean  "read",                  :default => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
   end
 
-  add_index "questions", ["poll_id"], :name => "index_questions_on_poll_id"
+  add_index "received_messages", ["deleted"], :name => "index_received_messages_on_deleted"
+  add_index "received_messages", ["read"], :name => "index_received_messages_on_read"
 
   create_table "responses", :force => true do |t|
     t.integer "user_id"
     t.integer "answer_id"
+  end
+
+  create_table "sent_messages", :force => true do |t|
+    t.integer  "sent_sender_id"
+    t.integer  "sent_recipient_id"
+    t.string   "subject"
+    t.text     "body"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
   end
 
   create_table "users", :force => true do |t|

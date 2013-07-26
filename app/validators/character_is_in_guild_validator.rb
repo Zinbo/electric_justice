@@ -1,4 +1,4 @@
-class CharacterExistsValidator < ActiveModel::EachValidator
+class CharacterIsInGuildValidator < ActiveModel::EachValidator
   def validate_each(record, attribute, value)
     if !value.blank?
       response = HTTParty.get('http://eu.battle.net/api/wow/character/Silvermoon/' + value + '?fields=guild')

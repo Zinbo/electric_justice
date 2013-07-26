@@ -5,6 +5,15 @@ ElectricJustice::Application.routes.draw do
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
+  match '/users/mailbox',                           to: 'mailboxes#show' ,                   as: :mailbox,            via: 'get'
+  match '/users/mailbox/inbox/:id',                       to: 'mailboxes#received_message' ,          as: :show_received_message,            via: 'get'
+  match '/users/mailbox/outbox/:id',                       to: 'mailboxes#sent_message' ,          as: :show_sent_message,            via: 'get'
+  match '/users/mailbox/compose_message',                  to: 'mailboxes#compose_message' ,          as: :compose_message,            via: 'get'
+  match '/users/mailbox/send_message',                  to: 'mailboxes#send_message' ,          as: :send_message,            via: 'post'
+  match '/users/mailbox/delete_inbox',                  to: 'mailboxes#delete_selected_inbox' ,          as: :delete_selected_inbox_messages,            via: 'post'
+  match '/users/mailbox/delete_outbox',                  to: 'mailboxes#delete_selected_outbox' ,          as: :delete_selected_outbox_messages,            via: 'post'
+  match '/users/mailbox/delete_trash',                  to: 'mailboxes#delete_selected_trash' ,          as: :delete_selected_trash_messages,            via: 'post'
+
   mount Forem::Engine, :at => '/forums'
 
   devise_for :users, :controllers => {:registrations => "registrations"}
@@ -19,13 +28,16 @@ ElectricJustice::Application.routes.draw do
   match '/requestbankitems',                  to: 'static_pages#request_bank_items',                          via: 'get'
   match '/voiceserverdetails',                to: 'static_pages#voice_server_details',                        via: 'get'
   
+
   match '/users/:id/characters',              to: 'characters#show' ,                   as: :alts,            via: 'get'
   match '/users/:id/characters',              to: 'characters#update' ,                                       via: 'post'
   match '/users/:id/characters/primary',      to: 'characters#primary',                 as: :make_primary,    via: 'post'
   match '/users/:id/characters',              to: 'characters#delete',                  as: :delete_alt,      via: 'delete'
-  match '/polls/older',                       to: 'polls#older',                  as: :older_polls,            via: 'get'
+  match '/polls/older',                       to: 'polls#older',                        as: :older_polls,     via: 'get'
+
+  match '/overview',                            to: 'blog_entries#overview',                                  via: 'get'
   
-  match '/overview',                           to: 'blog_entries#overview',                                   via: 'get'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

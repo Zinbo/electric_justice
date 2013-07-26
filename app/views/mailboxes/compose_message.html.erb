@@ -1,0 +1,19 @@
+<h2>Compose Message</h2>
+<%= form_for @message, :url => url_for( :action => 'send_message') do |f| %>
+	<%= render 'shared/mail_error_messages' %>
+	
+	<%= fields_for @character do |u| %>
+	    	
+    	<%= u.label :name, "Recipient" %>
+	    <%= u.text_field :name, :autofocus => true %>
+  	<% end %>
+	
+	<%= f.label :subject %>
+	<%= f.text_field :subject %>
+
+	<%= f.label :body %>
+	<%= f.text_field :body %>	
+
+    <%= f.submit "Send Message", class: "btn btn-large btn-primary" %>
+<% end %>
+

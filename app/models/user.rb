@@ -1,5 +1,13 @@
 class User < ActiveRecord::Base
+  
   has_many :characters
+  
+  has_many :received_messages_as_sender, :class_name => "ReceivedMessage", :foreign_key => 'received_sender_id'
+  has_many :received_messages_as_recipient, :class_name => "ReceivedMessage", :foreign_key => 'received_recipient_id'
+  
+  has_many :sent_messages_as_sender, :class_name => "SentMessage", :foreign_key => 'sent_sender_id'
+  has_many :sent_messages_as_recipient, :class_name => "SentMessage", :foreign_key => 'sent_recipient_id'
+  
   accepts_nested_attributes_for :characters
   
   before_save { self.email = email.downcase }

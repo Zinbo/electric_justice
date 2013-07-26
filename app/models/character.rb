@@ -3,7 +3,7 @@ class Character < ActiveRecord::Base
   
   before_save { self.name = name.downcase }
   
-  validates :name, presence: true, uniqueness: { case_sensitive: false }, character_exists: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }, character_is_in_guild: true
   
   def self.change_primary(char_params)
     transaction do      

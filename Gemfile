@@ -41,3 +41,5 @@ end
 gem 'devise'
 
 gem 'forem', :git => "git://github.com/radar/forem.git"
+
+gem "has_mailbox"

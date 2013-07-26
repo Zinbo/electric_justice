@@ -1,0 +1,155 @@
+<div class="tabbable tabs-left">
+   <ul class="nav nav-tabs">
+      <li class="active">
+         <a href="#inbox" data-toggle="tab">Inbox</a>
+      </li>
+      <li><a href="#outbox" data-toggle="tab">Outbox</a></li>
+      <li><a href="#trash" data-toggle="tab">Trash</a></li>
+   </ul>
+   <div class="tab-content">
+      <div class="tab-pane active" id="inbox">
+         <%= form_for @inbox_messages, :url => {:action => :delete_selected_inbox },  method: "post" do |f| %>
+	         <div class="btn-group">
+	            <button class="btn dropdown-toggle" data-toggle="dropdown">
+		            Select
+		            <span class="caret"></span>
+	            </button>
+	            <ul class="dropdown-menu">
+	               <li>
+	                  <a href="#select" class="check_all">All</a>
+	                  <a href="#unselect" class="uncheck_all">None</a>
+	               </li>
+	            </ul>
+	         </div>
+	         <%= link_to "Compose", compose_message_path, class: "btn" %>
+	         <%= button_tag( :class => "btn") do %>
+	         	<i class="icon-trash"></i>
+	         <% end %>
+	         <table>
+	            <thead>
+	               <tr>
+	                  <th></th>
+	                  <th>Sender</th>
+	                  <th>Subject</th>
+	                  <th>Time received</th>
+	               </tr>
+	            </thead>
+	            <tbody>
+	               <% @inbox_messages.each do |message| %>
+		               <tr data-link="<%= show_received_message_path(message) %>">
+		                  <td>
+		                     <%= check_box_tag "selected_messages[]", message.id  %>
+		                  </td>
+		                  <td>
+		                     <%= message.received_sender %>
+		                  </td>
+		                  <td>
+		                     <%= message.subject %>
+		                  </td>
+		                  <td>
+		                     <%= message.created_at %>
+		                  </td>
+		               </tr>
+	               <% end %>
+	            </tbody>
+	         </table>
+         <%end%>
+      </div>
+      <div class="tab-pane" id="outbox">
+         <%= form_for @inbox_messages, :url => {:action => :delete_selected_outbox },  method: "post" do |f| %>
+	         <div class="btn-group">
+	            <button class="btn dropdown-toggle" data-toggle="dropdown">
+		            Select
+		            <span class="caret"></span>
+	            </button>
+	            <ul class="dropdown-menu">
+	               <li>
+	                  <a href="#select" class="check_all">All</a>
+	                  <a href="#unselect" class="uncheck_all">None</a>
+	               </li>
+	            </ul>
+	         </div>
+	         <%= link_to "Compose", compose_message_path, class: "btn" %>
+	         <%= button_tag( :class => "btn") do %>
+	         	<i class="icon-trash"></i>
+	         <% end %>
+	         <table>
+	            <thead>
+	               <tr>
+	                  <th></th>
+	                  <th>Recipient</th>
+	                  <th>Subject</th>
+	                  <th>Time received</th>
+	               </tr>
+	            </thead>
+	            <tbody>
+	               <% @outbox_messages.each do |message| %>
+		               <tr data-link="<%= show_sent_message_path(message) %>">
+		                  <td>
+		                     <%= check_box_tag "selected_messages[]", message.id %>
+		                  </td>
+		                  <td>
+		                     <%= message.sent_recipient %>
+		                  </td>
+		                  <td>
+		                     <%= message.subject %>
+		                  </td>
+		                  <td>
+		                     <%= message.created_at %>
+		                  </td>
+		               </tr>
+	               <% end %>
+	            </tbody>
+	         </table>
+         <%end%>
+      </div>
+      <div class="tab-pane" id="trash">
+         <%= form_for @inbox_messages, :url => {:action => :delete_selected_trash },  method: "post" do |f| %>
+	         <div class="btn-group">
+	            <button class="btn dropdown-toggle" data-toggle="dropdown">
+		            Select
+		            <span class="caret"></span>
+	            </button>
+	            <ul class="dropdown-menu">
+	               <li>
+	                  <a href="#select" class="check_all">All</a>
+	                  <a href="#unselect" class="uncheck_all">None</a>
+	               </li>
+	            </ul>
+	         </div>
+	         <%= link_to "Compose", compose_message_path, class: "btn" %>
+	         <%= button_tag( :class => "btn", data: { confirm: "Are you sure you wish to delete these messages permanently?" }) do %>
+	         	<i class="icon-trash"></i>
+	         <% end %>
+	         <table>
+	            <thead>
+	               <tr>
+	                  <th></th>
+	                  <th>Sender</th>
+	                  <th>Subject</th>
+	                  <th>Time received</th>
+	               </tr>
+	            </thead>
+	            <tbody>
+	               <% @trash_messages.each do |message| %>
+		               <tr data-link="<%= show_received_message_path(message) %>">
+		                  <td>
+		                     <%= check_box_tag "selected_messages[]", message.id %>
+		                  </td>
+		                  <td>
+		                     <%= message.received_sender %>
+		                  </td>
+		                  <td>
+		                     <%= message.subject %>
+		                  </td>
+		                  <td>
+		                     <%= message.created_at %>
+		                  </td>
+	                  </tr>
+                  <% end %>
+	            </tbody>
+	         </table>
+         <%end%>
+      </div>
+   </div>
+</div>

@@ -96,6 +96,9 @@ GEM
     guard-rspec (2.5.0)
       guard (>= 1.1)
       rspec (~> 2.11)
+    has_mailbox (1.5.5)
+      jquery-rails
+      will_paginate
     hash-deep-merge (0.1.1)
     hike (1.2.3)
     httparty (0.11.0)
@@ -250,6 +253,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   forem!
   guard-rspec (= 2.5.0)
+  has_mailbox
   httparty (~> 0.11.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)
