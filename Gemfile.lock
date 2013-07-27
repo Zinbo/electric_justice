@@ -1,14 +1,23 @@
 GIT
+  remote: git://github.com/radar/forem-bootstrap.git
+  revision: ed6dca40937b5c73e0ab04c912d27313e945362b
+  specs:
+    forem-bootstrap (0.0.1)
+      bootstrap-sass (~> 2.3.2.1)
+
+GIT
   remote: git://github.com/radar/forem.git
-  revision: e6c7e04f2dbf806aa75a5a6e9810ee6e168d3011
+  revision: 136b0c036f2f9c52a267aa0ab7dcafdf1f3931f9
   specs:
     forem (1.0.0.beta1)
+      bootstrap-sass (= 2.3.2.1)
       cancan (= 1.6.10)
       decorators (~> 1.0.2)
       friendly_id (~> 4.0, >= 4.0.9)
       gemoji (= 1.1.2)
       localeapp
       rails (>= 3.1.10, < 3.3, != 3.2.9, != 3.2.8, != 3.2.7, != 3.2.6, != 3.2.5, != 3.2.4, != 3.2.3, != 3.2.2, != 3.2.10, != 3.2.1, != 3.2.0)
+      select2-rails (= 3.4.3)
       simple_form
       workflow (= 0.8.0)
 
@@ -43,8 +52,8 @@ GEM
       i18n (= 0.6.1)
       multi_json (~> 1.0)
     arel (3.0.2)
-    bcrypt-ruby (3.0.1)
-    bootstrap-sass (2.3.2.0)
+    bcrypt-ruby (3.1.1)
+    bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
       will_paginate
@@ -96,9 +105,6 @@ GEM
     guard-rspec (2.5.0)
       guard (>= 1.1)
       rspec (~> 2.11)
-    has_mailbox (1.5.5)
-      jquery-rails
-      will_paginate
     hash-deep-merge (0.1.1)
     hike (1.2.3)
     httparty (0.11.0)
@@ -203,6 +209,9 @@ GEM
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
+    select2-rails (3.4.3)
+      sass-rails
+      thor (~> 0.14)
     selenium-webdriver (2.0.0)
       childprocess (>= 0.1.9)
       ffi (>= 1.0.7)
@@ -211,7 +220,7 @@ GEM
     simple_form (2.1.0)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
-    slop (3.4.5)
+    slop (3.4.6)
     sprockets (2.2.2)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -244,7 +253,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  bootstrap-sass (= 2.3.2.0)
+  bootstrap-sass (= 2.3.2.1)
   bootstrap-will_paginate (= 0.0.9)
   capybara (= 2.1.0)
   childprocess (= 0.3.6)
@@ -252,8 +261,8 @@ DEPENDENCIES
   devise
   factory_girl_rails (= 4.2.1)
   forem!
+  forem-bootstrap!
   guard-rspec (= 2.5.0)
-  has_mailbox
   httparty (~> 0.11.0)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)

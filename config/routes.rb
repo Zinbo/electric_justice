@@ -5,6 +5,14 @@ ElectricJustice::Application.routes.draw do
   # If you would like to change where this extension is mounted, simply change the :at option to something different.
   #
   # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
+  mount Forem::Engine, :at => '/forums'
+
+
+  # This line mounts Forem's routes at /forums by default.
+  # This means, any requests to the /forums URL of your application will go to Forem::ForumsController#index.
+  # If you would like to change where this extension is mounted, simply change the :at option to something different.
+  #
+  # We ask that you don't use the :as option here, as Forem relies on it being the default of "forem"
   match '/users/mailbox',                           to: 'mailboxes#show' ,                   as: :mailbox,            via: 'get'
   match '/users/mailbox/inbox/:id',                       to: 'mailboxes#received_message' ,          as: :show_received_message,            via: 'get'
   match '/users/mailbox/outbox/:id',                       to: 'mailboxes#sent_message' ,          as: :show_sent_message,            via: 'get'
@@ -20,7 +28,11 @@ ElectricJustice::Application.routes.draw do
   resources :users, only: [:show, :index, :destroy]
   resources :polls, only: [:index, :create]
   
-  root to: 'static_pages#home'
+  authenticated :user do
+    root :to => "blog_entries#overview"
+  end
+
+  root :to => "static_pages#home"
   
   match '/gallery',                           to: 'static_pages#gallery',                                     via: 'get'
   match '/progression',                       to: 'static_pages#progression',                                 via: 'get'

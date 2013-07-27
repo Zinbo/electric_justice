@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   
   def to_s
-    Character.find_by_user_id_and_primary(self.id, true).name
+    Character.find_by_user_id_and_primary(self.id, true).name.capitalize
   end
   
 end
