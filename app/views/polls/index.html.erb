@@ -1,24 +1,31 @@
 <% provide(:title, 'Polls') %>
 <div class="center hero-unit">
-  <h1>Polls</h1>
+	<h1>Polls</h1>
 
-  <h2>
-    What do you think?
-  </h2>
+  	<h2>
+    	What do you think?
+  	</h2>
   
-  <div class="row">
-  	<%= form_for(@poll, :url => url_for( :action => 'create'), :method => :post) do |f| %>
-  		<h3><%=@poll.question%></h3>
+  	<div class="row">
+  		<%= form_for(@poll, :url => url_for( :action => 'answer'), :method => :post) do |f| %>
+  			<h3><%=@poll.question%></h3>
   	
-  		<%count = @poll.answers.count%>
-		<%@poll.answers.each_with_index do |a, i|%>
-			<%= radio_button_tag(:answer, a.id, (i == 0)) %> <%=a.answer%>
-			<p>
-  	  	<%end%>
-      	<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-	<% end %>
-  </div>
-  <div class="pull-right">
-  	<%= link_to "Older Entries", main_app.older_polls_path %></li>
-  </div>
+  			<%count = @poll.answers.count%>
+  			<div class="span2 text-left", style="margin:0 auto; float:none;">
+				<%@poll.answers.each_with_index do |a, i|%>
+					<div class="row ">
+						<%= radio_button_tag(:answer, a.id, (i == 0)) %> <%=a.answer%>
+					</div>
+  	  			<%end%>
+  	  		</div>
+      		<%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+		<% end %>
+  	</div>
+  	<% if !current_user.nil? && current_user.admin? %>
+		<%= link_to "Create new poll", new_poll_path, class: "btn" %>
+		<%= link_to "Edit new poll", edit_poll_path(@poll.id), class: "btn" %>
+	<%end%>
+</div>
+<div class="pull-right">
+	<%= link_to "Older Entries", main_app.older_polls_path %></li>
 </div>

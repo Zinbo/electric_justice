@@ -1,0 +1,8 @@
+<%= form_for @entry, :url => url_for( :action => 'update') do |f| %>
+
+      <%= f.label :entry %>
+      <%= f.text_area :entry, :rows => "10" %>
+      <br>
+      
+      <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
+    <% end %> 

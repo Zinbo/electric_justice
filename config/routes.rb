@@ -26,7 +26,7 @@ ElectricJustice::Application.routes.draw do
 
   devise_for :users, :controllers => {:registrations => "registrations"}
   resources :users, only: [:show, :index, :destroy]
-  resources :polls, only: [:index, :create]
+  resources :polls, only: [:new, :index, :create, :edit, :update]
   
   authenticated :user do
     root :to => "blog_entries#overview"
@@ -46,8 +46,15 @@ ElectricJustice::Application.routes.draw do
   match '/users/:id/characters/primary',      to: 'characters#primary',                 as: :make_primary,    via: 'post'
   match '/users/:id/characters',              to: 'characters#delete',                  as: :delete_alt,      via: 'delete'
   match '/polls/older',                       to: 'polls#older',                        as: :older_polls,     via: 'get'
+  match '/polls/answer',                       to: 'polls#answer',                        as: :answer_polls,     via: 'post'
 
   match '/overview',                            to: 'blog_entries#overview',                                  via: 'get'
+  match '/overview/new',                      to: 'blog_entries#new',                                           via: 'get'
+  match '/overview/create',                      to: 'blog_entries#create',                                           via: 'post'
+  match '/overview/edit/:id',                      to: 'blog_entries#edit',             as: :overview_edit,           via: 'get'
+  match '/overview/update/:id',                      to: 'blog_entries#update',                                           via: 'put'
+  
+  match '/test', to: 'test#index', via: 'get'
   
   
   # The priority is based upon order of creation:

@@ -1,0 +1,11 @@
+<div class="center hero-unit">
+	<h1>Older Entries</h1>
+
+	<h2>
+		What do we think?
+	</h2>
+	<%@charts.each_with_index do |c, i|%>
+		<%= high_chart("response_chart_#{i}", c)  %>
+		<br>
+	<%end%>
+</div>

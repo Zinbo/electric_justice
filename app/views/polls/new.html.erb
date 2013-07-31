@@ -1,0 +1,13 @@
+<%= nested_form_for @poll do |f| %>  
+  	<p>  
+	    <%= f.label :question %><br />  
+	    <%= f.text_field :question %>  
+    </p>  
+	<%= f.fields_for :answers do |a|%>
+		<%= a.label :answer, "Answer" %>  
+		<%= a.text_field :answer %>
+		<%= a.link_to_remove "Remove this answer" %>
+	<%end%>    
+	<p><%= f.link_to_add "Add an answer", :answers %></p>  
+	<p><%= f.submit "Submit" %></p>  
+<% end %>  

@@ -5,8 +5,7 @@
   <h2>
     Who are we?
   </h2>
-  
-  	<table>
+  	<table class="table table-striped">
   		<thead>
   			<tr>
   				<th></th>
@@ -29,20 +28,20 @@
 					<%= link_to member['character']['name'], 'http://eu.battle.net/wow/en/character/silvermoon/' + member['character']['name'] + '/simple' %>
 				</td>
 				<td>
-					<%= member['rank'] %>
+					<%= @rank[member['rank']] %>
 				</td>			
 				<td>
 					<%= member['character']['level'] %>
 				</td>
 				<td>
-					<%= image_tag("http://media.blizzard.com/wow/icons/36/race_" + @races[member['character']['race']] + "_" + @gender[member['character']['gender']] + ".jpg")%>
+					<%= image_tag("http://media.blizzard.com/wow/icons/36/race_" + @races[member['character']['race']] + "_" + @gender[member['character']['gender']] + ".jpg", class: "wow-icon", "data-title" => @gender[member['character']['gender']].capitalize + " " + @races[member['character']['race']].capitalize)%>
 				</td>
 				<td>
-					<%= image_tag("http://media.blizzard.com/wow/icons/36/class_" + @classes[member['character']['class']] + ".jpg")%>
+					<%= image_tag("http://media.blizzard.com/wow/icons/36/class_" + @classes[member['character']['class']] + ".jpg", class: "wow-icon", "data-title" => @classes[member['character']['class']].capitalize )%>
 				</td>
 				<td>
 					<% if !member['character']['spec'].blank? %>
-						<%= image_tag("http://eu.media.blizzard.com/wow/icons/36/" + member['character']['spec']['icon'] + ".jpg") %>
+						<%= image_tag("http://eu.media.blizzard.com/wow/icons/36/" + member['character']['spec']['icon'] + ".jpg", class: "wow-icon", "data-title" => member['character']['spec']['icon']) %>
 					<%end%>
 				</td>
 			</tr>

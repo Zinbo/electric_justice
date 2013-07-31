@@ -17,6 +17,9 @@ class PollsController < ApplicationController
       @poll.answers.each do |a|
         no_of_responses << a.responses.count
       end
+      
+      puts "Showing chart...."
+      
       @chart = LazyHighCharts::HighChart.new('graph') do |f|
          f.title({ :text=> @poll.question})
          f.options[:yAxis] = {:title => {:text => "Responses"}, :allowDecimals => false}
@@ -31,7 +34,7 @@ class PollsController < ApplicationController
     
   end
   
-  def create
+  def answer
     answer = Answer.find(params[:answer])
     @response = Response.new(:answer => answer, :user => current_user)
     if @response.save
@@ -62,6 +65,34 @@ class PollsController < ApplicationController
         end
       end
     end
+  end
+  
+  def new
+    @poll = Poll.new
+  end
+  
+  def create
+    poll = Poll.new(params[:poll])
+    poll.save
+    flash[:success] = "poll saved"
+    redirect_to polls_path
+  end
+  
+  def edit
+    @poll = Poll.find(params[:id])
+  end
+  
+  def update
+    @poll = Poll.find(params[:id])
+    @poll.update_attributes(params[:poll]) 
+    params[:poll][:answers_attributes].each do |a|
+      if a[1][:_destroy] == 1.to_s
+        answer = Answer.find(a[1][:id])
+        answer.destroy
+      end
+    end
+    flash[:success] = "poll edited"
+    redirect_to polls_path
   end
   
 end

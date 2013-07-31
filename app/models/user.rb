@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_many :sent_messages_as_sender, :class_name => "SentMessage", :foreign_key => 'sent_sender_id'
   has_many :sent_messages_as_recipient, :class_name => "SentMessage", :foreign_key => 'sent_recipient_id'
   
+  has_many :blog_entries
+  
   accepts_nested_attributes_for :characters
   
   before_save { self.email = email.downcase }

@@ -7,7 +7,7 @@ GIT
 
 GIT
   remote: git://github.com/radar/forem.git
-  revision: 136b0c036f2f9c52a267aa0ab7dcafdf1f3931f9
+  revision: e09e10f55dfef83991ed43663ee609ff8dcaf9af
   specs:
     forem (1.0.0.beta1)
       bootstrap-sass (= 2.3.2.1)
@@ -110,6 +110,8 @@ GEM
     httparty (0.11.0)
       multi_json (~> 1.0)
       multi_xml (>= 0.5.2)
+    hublot (0.0.6)
+      rails (> 3.0.0)
     i18n (0.6.1)
     jbuilder (1.0.2)
       activesupport (>= 3.0.0)
@@ -139,11 +141,12 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    method_source (0.8.1)
+    method_source (0.8.2)
     mime-types (1.23)
     mini_portile (0.5.1)
     multi_json (1.7.7)
     multi_xml (0.5.4)
+    nested_form (0.3.2)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
@@ -201,7 +204,7 @@ GEM
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
     rubyzip (0.9.9)
-    sass (3.2.9)
+    sass (3.2.10)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -264,10 +267,12 @@ DEPENDENCIES
   forem-bootstrap!
   guard-rspec (= 2.5.0)
   httparty (~> 0.11.0)
+  hublot (~> 0.0.6)
   jbuilder (= 1.0.2)
   jquery-rails (= 2.2.1)
   lazy_high_charts
   libnotify (= 0.8.0)
+  nested_form
   pg (= 0.15.1)
   rails (= 3.2.13)
   rspec-rails (= 2.13.1)

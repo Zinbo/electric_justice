@@ -43,3 +43,7 @@ gem 'devise'
 gem 'forem', :git => "git://github.com/radar/forem.git"
 
 gem 'forem-bootstrap', :github => "radar/forem-bootstrap"
+
+gem "hublot", "~> 0.0.6"
+
+gem "nested_form"
