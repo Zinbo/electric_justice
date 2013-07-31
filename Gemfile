@@ -47,3 +47,7 @@ gem 'forem-bootstrap', :github => "radar/forem-bootstrap"
 gem "hublot", "~> 0.0.6"
 
 gem "nested_form"
+
+gem "blankslate"
+
+gem 'gon', '3.0.5'

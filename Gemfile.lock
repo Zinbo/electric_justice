@@ -53,6 +53,7 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.1.1)
+    blankslate (3.1.2)
     bootstrap-sass (2.3.2.1)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
@@ -96,7 +97,10 @@ GEM
     friendly_id (4.0.9)
     gemoji (1.1.2)
     gli (2.7.0)
-    guard (1.8.1)
+    gon (3.0.5)
+      actionpack (>= 2.3.0)
+      json
+    guard (1.8.2)
       formatador (>= 0.2.4)
       listen (>= 1.0.0)
       lumberjack (>= 1.0.2)
@@ -256,6 +260,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  blankslate
   bootstrap-sass (= 2.3.2.1)
   bootstrap-will_paginate (= 0.0.9)
   capybara (= 2.1.0)
@@ -265,6 +270,7 @@ DEPENDENCIES
   factory_girl_rails (= 4.2.1)
   forem!
   forem-bootstrap!
+  gon (= 3.0.5)
   guard-rspec (= 2.5.0)
   httparty (~> 0.11.0)
   hublot (~> 0.0.6)

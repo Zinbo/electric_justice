@@ -4,8 +4,10 @@
 	<h2>
 		What do we think?
 	</h2>
-	<%@charts.each_with_index do |c, i|%>
-		<%= high_chart("response_chart_#{i}", c)  %>
+	
+	<%for i in 1..@no_of_polls%>
+		<div class="older_charts"></div>
 		<br>
 	<%end%>
+
 </div>

@@ -24,8 +24,10 @@
   	<% if !current_user.nil? && current_user.admin? %>
 		<%= link_to "Create new poll", new_poll_path, class: "btn" %>
 		<%= link_to "Edit new poll", edit_poll_path(@poll.id), class: "btn" %>
+		<%= link_to "Delete poll", @poll, method: :delete,
+                                  data: { confirm: "You sure?" }, class: "btn" %>
 	<%end%>
 </div>
 <div class="pull-right">
-	<%= link_to "Older Entries", main_app.older_polls_path %></li>
+	<%= link_to "Older Entries", main_app.older_polls_path, :method => "get" %></li>
 </div>

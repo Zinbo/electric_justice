@@ -4,12 +4,15 @@
   	<h2>
     	What do you think?
   	</h2>
-	<%= high_chart("response_chart", @chart)  %>
-	<div class="pull-right">
-		<% if !current_user.nil? && current_user.admin? %>
-			<%= link_to "Create new poll", new_poll_path, class: "btn" %>
-		<%end%>
-		<br>
-		<%= link_to "Older Entries", main_app.older_polls_path %></li>
-	</div>
+	<div id="container"></div>
+	<% if !current_user.nil? && current_user.admin? %>
+		<%= link_to "Create new poll", new_poll_path, class: "btn" %>
+		<%= link_to "Edit poll", edit_poll_path(@poll.id), class: "btn" %>
+		<%= link_to "Delete poll", @poll, method: :delete,
+                                  data: { confirm: "You sure?" }, class: "btn" %>
+	<%end%>
+</div>
+
+<div class="pull-right">
+	<%= link_to "Older Entries", main_app.older_polls_path, :method => "get" %></li>
 </div>

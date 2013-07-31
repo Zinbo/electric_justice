@@ -1,4 +1,4 @@
-class PollsController < ApplicationController
+ class PollsController < ApplicationController
   
   before_filter :authenticate_user!, :only => [:index]
   
@@ -13,19 +13,16 @@ class PollsController < ApplicationController
       end
     end
     if already_answered
-      no_of_responses = []
+      @no_of_responses = []
       @poll.answers.each do |a|
-        no_of_responses << a.responses.count
+        
+        @no_of_responses << a.responses.count
       end
-      
-      puts "Showing chart...."
-      
-      @chart = LazyHighCharts::HighChart.new('graph') do |f|
-         f.title({ :text=> @poll.question})
-         f.options[:yAxis] = {:title => {:text => "Responses"}, :allowDecimals => false}
-         f.options[:xAxis] = {:title => {:text => "Answers"}, :categories => @poll.answers.map(&:answer)}
-         f.series(:type=> 'column',:name=> 'responses',:data=> no_of_responses)
-      end
+
+      gon.answers = @poll.answers.map(&:answer)
+
+      gon.poll = @poll
+      gon.no_of_responses = @no_of_responses
       render 'graph'
     else
       @response = Response.new
@@ -33,6 +30,7 @@ class PollsController < ApplicationController
     end
     
   end
+    
   
   def answer
     answer = Answer.find(params[:answer])
@@ -49,21 +47,29 @@ class PollsController < ApplicationController
     polls = Poll.order("created_at DESC")
     polls.shift
     
-    @charts = []
     if polls.count > 1
+      list_of_no_of_responses = []
+      list_of_answers = []
       polls.each do |p|
+        
         no_of_responses = []
+        answers = []
+        
         p.answers.each do |a|
+          answers << a.answer
           no_of_responses << a.responses.count
         end
-
-        @charts << LazyHighCharts::HighChart.new('graph') do |f|
-          f.title({ :text=> p.question})
-          f.options[:yAxis] = {:title => {:text => "Responses"}, :allowDecimals => false}
-          f.options[:xAxis] = {:title => {:text => "Answers"}, :categories => p.answers.map(&:answer)}
-          f.series(:type=> 'column',:name=> 'responses',:data=> no_of_responses)
-        end
+        
+        list_of_answers << answers
+        list_of_no_of_responses << no_of_responses
       end
+      
+      gon.polls = polls
+      gon.list_of_no_of_responses = list_of_no_of_responses
+      gon.list_of_answers = list_of_answers 
+     
+     @no_of_polls = polls.count
+      
     end
   end
   
@@ -92,6 +98,12 @@ class PollsController < ApplicationController
       end
     end
     flash[:success] = "poll edited"
+    redirect_to polls_path
+  end
+  
+  def destroy
+    Poll.find(params[:id]).destroy
+    flash[:success] = "Poll deleted."
     redirect_to polls_path
   end
   

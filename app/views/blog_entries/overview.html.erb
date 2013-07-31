@@ -8,7 +8,7 @@
 				<li><%= link_to "Roster", roster_path %></li>
 				<li><%= link_to "Raid Progression", progression_path %></li>
 				<li><%= link_to "Request Bank Items", requestbankitems_path %></li>
-				<li><%= link_to "Polls", polls_path %></li>
+				<li><%= link_to "Polls", polls_path, :method => "get" %></li>
 		    </ul>
 		
 		</div>
@@ -25,9 +25,7 @@
 				<p>
 				Created by <%= entry.user%> <%= entry.created_at.pretty %>
 				<p>
-				<%if entry.created_at + 5.seconds < entry.updated_at%>
-					Last editted <%= entry.updated_at.pretty %>
-				<%end%>
+				Last edited <%= entry.updated_at.pretty %>
 				<% if !current_user.nil? && current_user.admin? %>
 					<%= link_to "Edit entry", overview_edit_path(:id => entry.id), class: "btn" %>
 				<%end%>
