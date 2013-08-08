@@ -18,7 +18,8 @@
   			</tr>
   		</thead>
   		<tbody>
-		<% @guildMembers.each do |member| %>
+		<%= will_paginate @guild_members%>
+		<% @guild_members.each do |member| %>
 			<tr>
 				<td>
 					<%= image_tag("http://eu.battle.net/static-render/eu/" + member['character']['thumbnail'] + '?alt=/wow/static/images/2d/avatar/' + 
@@ -48,4 +49,5 @@
 	  	<% end %>
   		</tbody>
   	</table>
+	  	<%= will_paginate @guild_members%>
 </div>

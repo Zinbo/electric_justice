@@ -68,7 +68,7 @@
       gon.list_of_no_of_responses = list_of_no_of_responses
       gon.list_of_answers = list_of_answers 
      
-     @no_of_polls = polls.count
+     @no_of_polls = polls.count - 1
       
     end
   end

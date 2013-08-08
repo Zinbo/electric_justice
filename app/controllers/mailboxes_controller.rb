@@ -25,6 +25,8 @@ class MailboxesController < ApplicationController
   def compose_message
     @message = SentMessage.new
     @character = Character.new
+    @character.name = params[:recipient]
+    
   end
   
   def send_message

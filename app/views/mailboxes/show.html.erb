@@ -8,7 +8,7 @@
    </ul>
    <div class="tab-content">
       <div class="tab-pane active" id="inbox">
-         <%= form_for @inbox_messages, :url => {:action => :delete_selected_inbox },  method: "post" do |f| %>
+         <%= form_for :inbox_messages, :url => {:action => :delete_selected_inbox },  method: "post" do |f| %>
 	         <div class="btn-group">
 	            <button class="btn dropdown-toggle" data-toggle="dropdown">
 		            Select
@@ -56,7 +56,7 @@
          <%end%>
       </div>
       <div class="tab-pane" id="outbox">
-         <%= form_for @inbox_messages, :url => {:action => :delete_selected_outbox },  method: "post" do |f| %>
+         <%= form_for :outbox_messages, :url => {:action => :delete_selected_outbox },  method: "post" do |f| %>
 	         <div class="btn-group">
 	            <button class="btn dropdown-toggle" data-toggle="dropdown">
 		            Select
@@ -104,7 +104,7 @@
          <%end%>
       </div>
       <div class="tab-pane" id="trash">
-         <%= form_for @inbox_messages, :url => {:action => :delete_selected_trash },  method: "post" do |f| %>
+         <%= form_for :trash_messages, :url => {:action => :delete_selected_trash },  method: "post" do |f| %>
 	         <div class="btn-group">
 	            <button class="btn dropdown-toggle" data-toggle="dropdown">
 		            Select

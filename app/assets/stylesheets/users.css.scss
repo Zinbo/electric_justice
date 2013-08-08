@@ -1,3 +1,13 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user {background-color:#DEDEDE;} 
+
+.imageContainer {
+    margin: 0; 
+    height: 500px; /* change it to your value*/
+    width: 100%; /* or use fixed width*/
+    background: transparent url('') no-repeat center;
+    overflow: hidden; 
+}

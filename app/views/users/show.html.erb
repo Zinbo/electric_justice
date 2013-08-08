@@ -1,1 +1,119 @@
-<% provide(:title, @user.email) %>
+<ul class="nav nav-tabs">
+	<% @characters.each_with_index do |char, i|%>
+		<% if i == 0%>
+	  		<li class="active"><a href="#<%=char.name%>" data-toggle="tab"><%=char.name%></a></li>
+  		<%else%>
+  			<li><a href="#<%=char.name%>" data-toggle="tab"><%=char.name%></a></li>
+		<%end%>
+	<%end%>
+</ul>
+<div class="tab-content">
+	<%@characters.each_with_index do |char, i|%>
+		<%if i == 0%>
+			<div class="tab-pane active" id="<%=char.name%>">
+		<%else%>
+			<div class="tab-pane" id="<%=char.name%>">
+		<%end%>
+			
+			<%response = @character_responses[char.id]%>
+			<h2><%=char.name%></h2>
+			<h3>Level <%=response['level'] %> <%=@races[response['race']]%> <%=@classes[response['class']] %></h3>
+			<%specs = String.new%>
+			<%response['talents'].each_with_index do |t, i|%>
+				<%if !t['spec'].nil? %>
+					<%if i != 0%>
+						<%specs << '/'%>
+					<%end%>
+					<%specs << t['spec']['name']%>
+				<%end%>
+			<%end%>
+			<h4><%=specs%></h4>
+			
+			<h5>Average Item Level: <%=response['items']['averageItemLevelEquipped']%></h5>
+	
+			<div class="pull-right"><%=link_to("Mail this character", {:controller => "mailboxes", :action => "compose_message", :recipient => char.name}, class:"btn")%></div>
+	
+			<%char_image_url = "http://eu.battle.net/static-render/eu/#{response['thumbnail']}"%>
+			<%char_image_url["avatar"] = "profilemain"%>
+			
+				<h3 class="span6"> Equipment </h3>
+			<div class="span6 imageContainer" style="background-image: url(<%=char_image_url%>)">
+				<div class="span1">
+					<%@left_armour.each do |a|%>
+						<%item_response = response['items'][a]%>
+						<%if !item_response.nil?%>
+							<%tooltip = item_response['tooltipParams']%>
+		
+							<%if tooltip.empty?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" ><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%elsif tooltip['upgrade'].nil?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%else%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>&upgd=<%=tooltip['upgrade']['current']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%end%>
+						<%else%>
+							<div style="height:56px; width:56px;"></div>
+						<%end%>
+					<%end%>	
+				</div>
+				
+				<div class="pull-right span1">
+					<%@right_armour.each do |a|%>
+						<%item_response = response['items'][a]%>
+						<%if !item_response.nil?%>
+							<%tooltip = item_response['tooltipParams']%>
+		
+							<%if tooltip.empty?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" ><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%elsif tooltip['upgrade'].nil?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%else%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>&upgd=<%=tooltip['upgrade']['current']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%end%>
+						<%else%>
+							<div style="height:56px; width:56px;"></div>
+						<%end%>
+					<%end%>	
+				</div>
+				
+				<div >
+					<%@bottom_armour.each do |a|%>
+						<%item_response = response['items'][a]%>
+						<%if !item_response.nil?%>
+							<%tooltip = item_response['tooltipParams']%>
+		
+							<%if tooltip.empty?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" ><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%elsif tooltip['upgrade'].nil?%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%else%>
+								<a href="http://www.wowhead.com/item=<%=item_response['id']%>" rel="ench=<%=tooltip['enchant']%>&gems=<%=tooltip['gem0']%>:<%=tooltip['gem1']%>:<%=tooltip['gem2']%>&forg=<%=tooltip['reforge']%>&upgd=<%=tooltip['upgrade']['current']%>"><img src="http://media.blizzard.com/wow/icons/56/<%=item_response['icon']%>.jpg"></a>
+							<%end%>
+						<%else%>
+							<div style="height:56px; width:56px;"></div>
+						<%end%>
+					<%end%>	
+				</div>
+			</div>
+			<h3 class="span4"> Activity Feed </h3>
+			<div class="span4">
+				<%for i in 0..9%>
+					<%feed = response["feed"][i]%>
+					<%type = feed["type"]%>
+					<%case type%>
+					<%when "LOOT"%>
+						<%item_response = HTTParty.get("http://eu.battle.net/api/wow/item/#{feed['itemId']}")%>
+						<div class="row"> <%=char.name%> got <a href="http://www.wowhead.com/item=<%=feed['itemId']%>" >[<%=item_response['name']%>]</a> </div>
+						<%= Time.at(feed['timestamp'].to_s.gsub( /.{3}$/, '' ).to_i).in_time_zone.pretty%>
+					<%when "ACHIEVEMENT"%>
+						<div class="row"> <%=char.name%> got the achievement <a href="http://www.wowhead.com/achievement=<%=feed['achievement']['id']%>" >[<%=feed['achievement']['title']%>]</a> </div>
+						<%= Time.at(feed['timestamp'].to_s.gsub( /.{3}$/, '' ).to_i).in_time_zone.pretty%>
+					<%when "CRITERIA"%>
+						<div class="row"> <%=char.name%> completed [<%=feed['criteria']['description']%>] for the achievement <a href="http://www.wowhead.com/achievement=<%=feed['achievement']['id']%>" >[<%=feed['achievement']['title']%>]</a> </div>
+						<%= Time.at(feed['timestamp'].to_s.gsub( /.{3}$/, '' ).to_i).in_time_zone.pretty%>
+					<%end%>
+				<%end%>
+			</div>
+		</div>
+	<%end%>
+</div>

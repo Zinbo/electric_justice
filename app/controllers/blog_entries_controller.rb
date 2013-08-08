@@ -3,7 +3,7 @@ class BlogEntriesController < ApplicationController
   before_filter :authenticate_user!, :only => [:new, :create]
   
   def overview
-    @news = BlogEntry.order("updated_at DESC")
+    @blog_entries = BlogEntry.paginate(:page => params[:page]).order("updated_at DESC")
   end
   
   def new

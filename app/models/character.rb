@@ -16,5 +16,5 @@ class Character < ActiveRecord::Base
       return new_primary
     end
   end
-
+  
 end

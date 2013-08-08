@@ -1,15 +1,36 @@
 <% provide(:title, 'All users') %>
+<div class="hero-unit">
 <h1>All users</h1>
-
-<ul class="users">
-  <% @users.each do |user| %>
-    <li>
-      <%= link_to user.email, user %>
-      <% if current_user.admin? %>
-    | 	<%= link_to "delete", user, method: :delete,
-                                  data: { confirm: "You sure?" } %>
-  	  <% end %>
-    </li>
-  <% end %>
+<ul>
+	<% @users.each do |user| %>
+		<div class="user">
+			<%characters = user.characters.dup%>
+			<%characters.each do |chara|%>
+				<%if chara.primary%>
+					<h2> <%= link_to chara.name.capitalize, user%> </h2>
+					<% response = HTTParty.get('http://eu.battle.net/api/wow/character/Silvermoon/' + chara.name) %>
+					<%= image_tag("http://eu.battle.net/static-render/eu/" + response['thumbnail'] + '?alt=/wow/static/images/2d/avatar/' + 
+					response['race'].to_s + '-' + response['gender'].to_s + '.jpg', alt: 'avatar') %>	
+					
+					<%= chara.name.capitalize%>
+					<%characters.delete(chara)%>
+					<%break%>
+				<%end%>
+			<%end%>
+			
+			<%characters.each do |chara|%>
+				<% response = HTTParty.get('http://eu.battle.net/api/wow/character/Silvermoon/' + chara.name) %>
+				<ul><%= image_tag("http://eu.battle.net/static-render/eu/" + response['thumbnail'] + '?alt=/wow/static/images/2d/avatar/' + 
+				response['race'].to_s + '-' + response['gender'].to_s + '.jpg', alt: 'avatar', style: "height:59px; width:59px;") %>
+				<%=chara.name.capitalize%></ul>
+			<%end%>
+			
+			<% if current_user.admin? %>
+				<%= link_to "delete", user, method: :delete,
+						data: { confirm: "You sure?" } %>
+			<% end %>
+		</div>
+		<p>
+	<% end %>
 </ul>
-
+</div>
